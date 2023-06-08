@@ -2,6 +2,7 @@ import {  useContext, useState } from 'react';
 import { FaBars } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import logo from '../../../assets/logo.png'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,10 +28,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              {/* <img className='h-12 w-12 rounded-3xl' src={logo} alt="" /> */}
+              <img className='h-10 w-10 rounded-3xl' src={logo} alt="" />
             </div>
             <div className="ml-3">
-              <span className="text-white font-bold text-lg">Supersonic Sports Cars</span>
+              <span className="text-white font-bold text-lg">Song Book</span>
             </div>
           </div>
           <div className="md:hidden">
