@@ -1,5 +1,5 @@
 
-import { FaBookOpen, FaCheck, FaClipboardList, FaPlus, FaStar, FaUser, FaUserAlt } from "react-icons/fa";
+import { FaBookOpen, FaCheck, FaClipboardList, FaPlus, FaStar, FaUser, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";

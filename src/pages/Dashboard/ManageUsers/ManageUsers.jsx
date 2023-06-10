@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
-import { FaChalkboardTeacher, FaTrashAlt, FaUserShield } from "react-icons/fa";
+import { FaChalkboardTeacher,FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
@@ -11,9 +11,7 @@ const ManageUsers = () => {
         return res.data;
     })
 
-    const handleDelete = user => {
-        console.log(user);
-    }
+    
 
     const handleMakeAdmin = (user) => {
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
@@ -77,7 +75,6 @@ const ManageUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,13 +93,8 @@ const ManageUsers = () => {
                                     }
 
                                 </td>
-                                <td> <button onClick={() => handleDelete(user)} className="btn btn-ghost text-white bg-red-500"><FaTrashAlt></FaTrashAlt></button></td>
-
                             </tr>)
                         }
-
-
-
                     </tbody>
                 </table>
             </div>

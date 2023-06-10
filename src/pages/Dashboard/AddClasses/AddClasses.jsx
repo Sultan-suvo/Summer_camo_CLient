@@ -12,7 +12,7 @@ const AddClass = () => {
     const newClass = {
       className: data.className,
       classImage: data.classImage,
-      instructorName: user.name,
+      instructorName: user.displayName,
       instructorEmail: user.email,
       availableSeats: data.availableSeats,
       price: data.price,
