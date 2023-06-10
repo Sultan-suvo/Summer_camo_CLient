@@ -1,6 +1,7 @@
 
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const AddClass = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -19,7 +20,7 @@ const AddClass = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/allClasses", {
+      const response = await fetch("http://localhost:5000/addClasses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,6 +30,13 @@ const AddClass = () => {
 
       if (response.ok) {
         console.log("Class added successfully");
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: `New class added!!`,
+          showConfirmButton: false,
+          timer: 1500
+      })
         reset(); // Reset the form fields
       } else {
         console.log("Error:", response.status);
