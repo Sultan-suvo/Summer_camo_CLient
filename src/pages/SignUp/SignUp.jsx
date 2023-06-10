@@ -47,7 +47,7 @@ const Register = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
 
-                const savedUser = { name: data.displayName, email: data.email }
+                const savedUser = { name: data.displayName, email: data.email,image:data.photoURL }
 
                 fetch('http://localhost:5000/users', {
                     method: "POSt",
@@ -87,7 +87,7 @@ const Register = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                const savedUser = { name: loggedUser.displayName, email: loggedUser.email }
+                const savedUser = { name: loggedUser.displayName, email: loggedUser.email ,image:loggedUser.photoURL}
                 fetch('http://localhost:5000/users', {
                     method: "POSt",
                     headers: {
