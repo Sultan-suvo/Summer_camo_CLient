@@ -1,8 +1,8 @@
 * Project Name
-  * Supersonic Sports Cars
+  * Song Book
 
 * Project Title
-  * Embrace the Power and Unity of Sports Cars
+  * Discover the Joy of Music
 
 * Use Technology 
   * 1. HTML
@@ -15,7 +15,10 @@
   * 8. mongoDB
   
  * Features
-   *    Display a collection of sports cars with key details such as make, model, year, price, and availability.Implement a search functionality to allow users to search for sports cars based on specific criteria like brand, price range, horsepower, etc.Provide comprehensive information about each sports car, including specifications, performance metrics, engine details, fuel consumption, and available color options.Showcase high-resolution images of sports cars from various angles to give users a visual representation of the car's design and features. Provide the latest news and updates from the sports car industry, including new releases, advancements in technology, and upcoming events or shows.
+   *  Implement a recommendation system that suggests songs to users based on their     listening history, favorite songs, or playlists.
+    Use machine learning algorithms or collaborative filtering techniques to analyze user preferences and generate personalized song recommendations.
+    Display the recommended songs on the homepage or in a dedicated section, allowing users to  discover new songs that match their tastes.
+    Provide options for users to like or dislike recommended songs, enabling the system to further refine and improve the recommendations over time.
 
 
 * Instalation And Usage 
@@ -32,4 +35,4 @@
    * Gmail : S***8@gmail.com
 
  * Project Link
-   *  https://supersonic-sports-cars.web.app/
+   *  https://summercamp-e9fc3.web.app/
