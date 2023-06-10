@@ -1,107 +1,118 @@
-import { useState } from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
+import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 
-const AddClasses = () => {
-  const [axiosSecure] = useAxiosSecure();
-  const [className, setClassName] = useState("");
-  const [classImage, setClassImage] = useState("");
-  const [availableSeats, setAvailableSeats] = useState(0);
-  const [price, setPrice] = useState(0);
-  const {user} = useAuth()
+const AddClass = () => {
+  const { register, handleSubmit, reset } = useForm();
+  const { user } = useAuth()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (data) => {
+    // Prepare the class object to be added to the database
     const newClass = {
-      className,
-      classImage,
-      instructorName: user.displayName,
+      className: data.className,
+      classImage: data.classImage,
+      instructorName: user.name,
       instructorEmail: user.email,
-      availableSeats,
-      price,
+      availableSeats: data.availableSeats,
+      price: data.price,
       status: "pending",
     };
 
     try {
-      const response = await axiosSecure.post("/classes", newClass);
-      console.log(response.data);
-      // Handle success scenario, show success message, or redirect
+      const response = await fetch("http://localhost:5000/allClasses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newClass),
+      });
+
+      if (response.ok) {
+        console.log("Class added successfully");
+        reset(); // Reset the form fields
+      } else {
+        console.log("Error:", response.status);
+      }
     } catch (error) {
-      console.error(error);
-      // Handle error scenario, show error message, etc.
+      console.log("Error:", error);
     }
   };
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="w-2/3">
       <h2 className="text-2xl font-bold mb-4">Add a Class</h2>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
-          <label htmlFor="className" className="block mb-2 text-lg">Class Name:</label>
+          <label htmlFor="className" className="block font-bold mb-2">
+            Class Name
+          </label>
           <input
             type="text"
             id="className"
-            value={className}
-            onChange={(e) => setClassName(e.target.value)}
-            required
-            className="w-full border border-gray-300 px-3 py-2 rounded"
+            {...register("className", { required: true })}
+            className="border border-gray-300 p-2 rounded-md w-full"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="classImage" className="block mb-2 text-lg">Class Image:</label>
+          <label htmlFor="classImage" className="block font-bold mb-2">
+            Class Image
+          </label>
           <input
             type="text"
             id="classImage"
-            value={classImage}
-            onChange={(e) => setClassImage(e.target.value)}
-            required
-            className="w-full border border-gray-300 px-3 py-2 rounded"
+            {...register("classImage", { required: true })}
+            className="border border-gray-300 p-2 rounded-md w-full"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-lg">Instructor Name:</label>
+          <label htmlFor="instructorName" className="block font-bold mb-2">
+            Instructor Name
+          </label>
           <input
             type="text"
-            value='a'
-            readOnly
-            className="w-full border border-gray-300 px-3 py-2 rounded bg-gray-100"
+            id="instructorName"
+            value={user?.displayName || ""} 
+            disabled
+            className="border border-gray-300 p-2 rounded-md w-full"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-lg">Instructor Email:</label>
+          <label htmlFor="instructorEmail" className="block font-bold mb-2">
+            Instructor Email
+          </label>
           <input
-            type="email"
-            value='a'
-            readOnly
-            className="w-full border border-gray-300 px-3 py-2 rounded bg-gray-100"
+            type="text"
+            id="instructorEmail"
+            value={user?.email}
+            disabled
+            className="border border-gray-300 p-2 rounded-md w-full"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="availableSeats" className="block mb-2 text-lg">Available Seats:</label>
+          <label htmlFor="availableSeats" className="block font-bold mb-2">
+            Available Seats
+          </label>
           <input
             type="number"
             id="availableSeats"
-            value={availableSeats}
-            onChange={(e) => setAvailableSeats(e.target.value)}
-            required
-            className="w-full border border-gray-300 px-3 py-2 rounded"
+            {...register("availableSeats", { required: true })}
+            className="border border-gray-300 p-2 rounded-md w-full"
           />
         </div>
-        <div className="mb-6">
-          <label htmlFor="price" className="block mb-2 text-lg">Price:</label>
+        <div className="mb-4">
+          <label htmlFor="price" className="block font-bold mb-2">
+            Price
+          </label>
           <input
             type="number"
             id="price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-            className="w-full border border-gray-300 px-3 py-2 rounded"
+            {...register("price", { required: true })}
+            className="border border-gray-300 p-2 rounded-md w-full"
           />
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white py-2 px-4 rounded-md"
         >
           Add
         </button>
@@ -110,4 +121,4 @@ const AddClasses = () => {
   );
 };
 
-export default AddClasses;
+export default AddClass;
