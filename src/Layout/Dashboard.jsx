@@ -1,4 +1,5 @@
 
+import { FaBookOpen, FaCheck, FaClipboardList, FaPlus, FaStar, FaUser, FaUserAlt } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
@@ -28,6 +29,7 @@ const Dashboard = () => {
                                                 to="/dashboard/manageclasses"
                                                 className="text-blue-500 hover:underline"
                                             >
+                                                <FaClipboardList></FaClipboardList>
                                                 Manage Classes
                                             </NavLink>
                                         </li>
@@ -36,6 +38,7 @@ const Dashboard = () => {
                                                 to="/dashboard/manageusers"
                                                 className="text-blue-500 hover:underline"
                                             >
+                                                <FaUser></FaUser>
                                                 Manage Users
                                             </NavLink>
                                         </li>
@@ -50,6 +53,7 @@ const Dashboard = () => {
                                                 to="/dashboard/addClasses"
                                                 className="text-blue-500 hover:underline"
                                             >
+                                                <FaPlus></FaPlus>
                                                 Add a Class
                                             </NavLink>
                                         </li>
@@ -58,6 +62,7 @@ const Dashboard = () => {
                                                 to="/dashboard/myClasses"
                                                 className="text-blue-500 hover:underline"
                                             >
+                                                <FaBookOpen></FaBookOpen>
                                                 My Classes
                                             </NavLink>
                                         </li>
@@ -72,6 +77,7 @@ const Dashboard = () => {
                                                 to="/dashboard/selectedClasses"
                                                 className="text-blue-500 hover:underline"
                                             >
+                                                <FaStar></FaStar>
                                                 My Selected Classes
                                             </NavLink>
                                         </li>
@@ -80,6 +86,7 @@ const Dashboard = () => {
                                                 to="/dashboard/enrolledClasses"
                                                 className="text-blue-500 hover:underline"
                                             >
+                                                <FaCheck></FaCheck>
                                                 My Enrolled Classes
                                             </NavLink>
                                         </li>
