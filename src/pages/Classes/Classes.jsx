@@ -1,52 +1,55 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import axios from "axios";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const Classes = () => {
-    const [classes, setClasses] = useState([]);
+  const [classes, setClasses] = useState([]);
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
-    useEffect(() => {
-        fetch("http://localhost:5000/allClasses")
-            .then((res) => res.json())
-            .then((data) => setClasses(data));
-    }, []);
+  useEffect(() => {
+    fetchClasses();
+  }, []);
 
-    const handleAddSelectClass = (item) => {
-        console.log(item);
+  const fetchClasses = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/classes");
+      const classesData = response.data;
+      setClasses(classesData);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    return (
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {classes.map((classItem) => (
+        <div
+          key={classItem._id}
+          className={`rounded-lg p-4 shadow ${
+            classItem.availableSeats <= 0 ? "bg-red-300" : "bg-white"
+          }`}
+        >
+          <img src={classItem.classImage} alt="Class Image" className="mb-4" />
+          <h2 className="text-xl font-bold mb-2">{classItem.name}</h2>
+          <p className="mb-2">Instructor: {classItem.instructorName}</p>
+          <p className="mb-2">Available Seats: {classItem.availableSeats}</p>
+          <p className="mb-4">Price: {classItem.price}</p>
 
-        <>
-            <Helmet>
-                <title>Song Book | Classes</title>
-            </Helmet>
-            <div className="container mx-auto px-4 py-8">
-                <h2 className="text-2xl font-bold mb-4">All Classes</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {classes.map((classData) => (
-                        <div key={classData.name} className="bg-white rounded shadow-lg p-6">
-                            <img
-                                src={classData.image}
-                                alt={classData.name}
-                                className="w-full h-64 mb-4 rounded-lg"
-                            />
-                            <h3 className="text-lg font-bold mb-2">{classData.name}</h3>
-                            <p className="text-sm">Instructor: {classData.instructor}</p>
-                            <p className="text-sm">Available Seats: {classData.availableSeats}</p>
-                            <p className="text-sm">Price: ${classData.price}</p>
-                            <button onClick={() => handleAddSelectClass(classData)}
-                                className={`mt-4 py-2 px-4 rounded ${classData.availableSeats === 0 ? "bg-red-500 text-white cursor-not-allowed" : "bg-blue-500 text-white"
-                                    }`}
-                                disabled={classData.availableSeats === 0}
-                            >
-                                {classData.availableSeats === 0 ? "Sold Out" : "Select"}
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </>
-    );
+          {classItem.availableSeats > 0 && !isAdmin && !isInstructor ? (
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+              Select
+            </button>
+          ) : (
+            <button className="bg-gray-500 cursor-not-allowed text-white px-4 py-2 rounded-lg" disabled>
+              Not Available
+            </button>
+          )}
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Classes;

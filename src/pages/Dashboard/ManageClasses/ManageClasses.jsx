@@ -79,7 +79,7 @@ const ManageClasses = () => {
   
 
   const handleSendFeedback = (classId) => {
-    // Open a modal or navigate to another page to send feedback to the instructor
+    console.log(classId);
   };
 
   return (
