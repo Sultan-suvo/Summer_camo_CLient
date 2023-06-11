@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
+  const {user}  =useAuth();
+  const [axiosSecure] = useAxiosSecure()
 
   useEffect(() => {
     fetchClasses();
@@ -16,6 +21,34 @@ const Classes = () => {
       setClasses(classesData);
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const handleSelectClass = (cls) => {
+    const { className, classImage, instructorName, price } = cls;
+    if (user?.email) {
+      const addedClass = {
+        userEmail: user?.email,
+        className,
+        classImage,
+        instructorName,
+        price,
+      };
+      axiosSecure
+        .post("/selectedclass", addedClass)
+        .then((data) => {
+          console.log(data.data.insertedId);
+          if (data.data.insertedId) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Selected successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -39,7 +72,7 @@ const Classes = () => {
           <p className="mb-4">Price: {classItem.price}</p>
 
           {classItem.availableSeats > 0 ? (
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+            <button onClick={() => handleSelectClass(classItem)} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
               Select
             </button>
           ) : (
