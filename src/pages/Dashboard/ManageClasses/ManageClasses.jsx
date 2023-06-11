@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 
 const ManageClasses = () => {
   const [classes, setClasses] = useState([]);
+  console.log(classes);
 
   useEffect(() => {
     fetch('http://localhost:5000/addClasses')

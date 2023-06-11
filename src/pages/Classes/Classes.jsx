@@ -33,7 +33,7 @@ const Classes = () => {
           }`}
         >
           <img src={classItem.classImage} alt="Class Image" className="mb-4" />
-          <h2 className="text-xl font-bold mb-2">{classItem.name}</h2>
+          <h2 className="text-xl font-bold mb-2">{classItem.className}</h2>
           <p className="mb-2">Instructor: {classItem.instructorName}</p>
           <p className="mb-2">Available Seats: {classItem.availableSeats}</p>
           <p className="mb-4">Price: {classItem.price}</p>

@@ -76,8 +76,6 @@ const Register = () => {
             });
     };
 
-
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
