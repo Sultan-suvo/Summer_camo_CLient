@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import useAdmin from "../../hooks/useAdmin";
-import useInstructor from "../../hooks/useInstructor";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
-  const [isAdmin] = useAdmin();
-  const [isInstructor] = useInstructor();
 
   useEffect(() => {
     fetchClasses();
@@ -23,7 +20,11 @@ const Classes = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+   <>
+       <Helmet>
+        <title>Song Book | Classes</title>
+      </Helmet>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
       {classes.map((classItem) => (
         <div
           key={classItem._id}
@@ -37,7 +38,7 @@ const Classes = () => {
           <p className="mb-2">Available Seats: {classItem.availableSeats}</p>
           <p className="mb-4">Price: {classItem.price}</p>
 
-          {classItem.availableSeats > 0 && !isAdmin && !isInstructor ? (
+          {classItem.availableSeats > 0 ? (
             <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
               Select
             </button>
@@ -49,6 +50,7 @@ const Classes = () => {
         </div>
       ))}
     </div>
+   </>
   );
 };
 

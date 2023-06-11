@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Instructor = () => {
   const [instructors, setInstructors] = useState([]);
@@ -21,6 +22,10 @@ const Instructor = () => {
   }, []);
 
   return (
+   <>
+   <Helmet>
+        <title>Song Book | Instructor</title>
+      </Helmet>
     <div className="my-12">
       <h3 className="text-2xl font-bold mb-4 text-center">Total Instructors: {instructors.length}</h3>
       <div className="grid grid-cols-3 gap-4">
@@ -35,6 +40,7 @@ const Instructor = () => {
         ))}
       </div>
     </div>
+   </>
   );
 };
 
