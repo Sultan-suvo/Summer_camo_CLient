@@ -32,7 +32,7 @@ const Classes = () => {
             classItem.availableSeats <= 0 ? "bg-red-300" : "bg-white"
           }`}
         >
-          <img src={classItem.classImage} alt="Class Image" className="mb-4" />
+          <img src={classItem.classImage} alt="Class Image" className="mb-4 h-64 w-full rounded-xl" />
           <h2 className="text-xl font-bold mb-2">{classItem.className}</h2>
           <p className="mb-2">Instructor: {classItem.instructorName}</p>
           <p className="mb-2">Available Seats: {classItem.availableSeats}</p>
