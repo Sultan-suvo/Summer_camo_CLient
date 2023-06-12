@@ -15,7 +15,7 @@ const AddClass = () => {
       instructorName: user.displayName,
       instructorEmail: user.email,
       availableSeats: data.availableSeats,
-      price: data.price,
+      price: parseFloat(data.price),
       status: "pending",
     };
 
