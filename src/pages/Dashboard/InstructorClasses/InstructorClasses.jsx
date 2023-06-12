@@ -33,24 +33,34 @@ const InstructorClasses = () => {
         };
         fetchInstructorClasses();
     }, []);
+    console.log(classes);
 
     return (
         <div className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold mb-8 text-center">Classes Added by Instructor</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {classes.map((classItem) => (
-            <div key={classItem._id} className="bg-white p-4 rounded shadow">
-              <h3 className="text-xl font-bold mb-2">{classItem.className}</h3>
-              <p className="mb-2">Status: {classItem.status}</p>
-              <p className="mb-2">Total Enrolled Students: {classItem.totalEnrolledStudents}</p>
-              <p className="mb-4">Feedback: {classItem.feedback}</p>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-                Update
-              </button>
+            <h2 className="text-2xl font-bold mb-8 text-center">Classes Added by Instructor</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {classes.map((classItem) => (
+                    <div key={classItem._id} className="bg-white p-4 rounded shadow">
+                        <h3 className="text-xl font-bold mb-2">{classItem.className}</h3>
+                        <p className="mb-2">Status: {classItem.status}</p>
+                        <p className="mb-2">Total Enrolled Students: {classItem.totalEnrolledStudents}</p>
+                        <div className='flex'>
+                            <p className="mb-2 me-2">Feedback:</p>
+                            {Array.isArray(classItem.feedback) ? (
+                                classItem.feedback.map((feedbackItem, index) => (
+                                    <p key={index} className="mb-2">{feedbackItem}</p>
+                                ))
+                            ) : (
+                                <p className="mb-2">no feedback</p>
+                            )}
+                        </div>
+                        <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                            Update
+                        </button>
+                    </div>
+                ))}
             </div>
-          ))}
         </div>
-      </div>
     );
 };
 

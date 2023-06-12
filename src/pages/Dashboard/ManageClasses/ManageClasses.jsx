@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const ManageClasses = () => {
@@ -76,7 +77,7 @@ const ManageClasses = () => {
 
 
 
-  
+
 
   return (
     <div className="container mx-auto">
@@ -106,12 +107,22 @@ const ManageClasses = () => {
             >
               Deny
             </button>
-            <button
+
+            {cls.status === "denied" && (
+              <Link
+                state={cls}
+                to={"/dashboard/feedback"}
+                className=" w-full btn btn-sm font-bold"
+              >
+                FeedBack
+              </Link>
+            )}
+            {/* <button
               
               className="btn btn-secondary"
             >
               Send Feedback
-            </button>
+            </button> */}
           </div>
         </div>
       ))}
