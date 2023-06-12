@@ -30,6 +30,7 @@ const PopularClasses = () => {
               <img src={classData.classImage} alt={classData.title} className="w-full h-64 mb-4 rounded-lg" />
               <h3 className="text-lg font-bold mb-2">{classData.className}</h3>
               <p className="text-sm">Instructor: {classData.instructorName}</p>
+              <p className="text-sm">Price: {classData.price}</p>
               <p className="text-sm">availableSeats: {classData.availableSeats}</p>
             </div>
           ))}

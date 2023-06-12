@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Banner from '../Banner/Banner';
 import PopularClasses from '../PopularClasses/PopularClasses';
 import PopularInstructor from '../PopularInstructor/PopularInstructor';
+import Feedback from '../Feedback/Feedback';
 
 const Home = () => {
     const [isDarkTheme, setIsDarkTheme] = useState(true);
@@ -27,6 +28,7 @@ const Home = () => {
             <Banner />
             <PopularClasses />
             <PopularInstructor />
+            <Feedback></Feedback>
         </div>
     );
 };
