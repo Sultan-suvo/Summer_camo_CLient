@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const InstructorClasses = () => {
     const [classes, setClasses] = useState([]);
@@ -54,9 +55,11 @@ const InstructorClasses = () => {
                                 <p className="mb-2">no feedback</p>
                             )}
                         </div>
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-                            Update
-                        </button>
+                        <Link to='/dashboard/addClasses'>
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                                Update
+                            </button>
+                        </Link>
                     </div>
                 ))}
             </div>

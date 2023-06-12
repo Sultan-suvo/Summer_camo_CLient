@@ -35,7 +35,7 @@ const SelectedClass = () => {
     <div className="w-full">
       <div>
         <h2 className="text-center text-2xl font-semibold my-12">
-          Select Classes
+          Select Classes{selectClass.length}
         </h2>
       </div>
       <div className="overflow-x-auto">
