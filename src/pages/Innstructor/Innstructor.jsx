@@ -7,7 +7,7 @@ const Instructor = () => {
   useEffect(() => {
     const fetchInstructorData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/users/instructors");
+        const response = await fetch("https://assignment12-server-nu.vercel.app/users/instructors");
         if (response.ok) {
           const data = await response.json();
           setInstructors(data);

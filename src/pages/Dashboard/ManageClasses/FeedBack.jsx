@@ -12,7 +12,7 @@ const FeedBack = () => {
         const fb = form.feedback.value;
 
         // Send the feedback to the API
-        fetch(`http://localhost:5000/insertFeedback/${id}`, {
+        fetch(`https://assignment12-server-nu.vercel.app/insertFeedback/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

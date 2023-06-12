@@ -12,7 +12,7 @@ const ManageUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`https://assignment12-server-nu.vercel.app/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -33,7 +33,7 @@ const ManageUsers = () => {
 
   const handleMakeInstructor = (user) => {
     const userId = user._id;
-    const endpoint = `http://localhost:5000/users/instructor/${userId}`;
+    const endpoint = `https://assignment12-server-nu.vercel.app/users/instructor/${userId}`;
 
     fetch(endpoint, {
       method: "PATCH",

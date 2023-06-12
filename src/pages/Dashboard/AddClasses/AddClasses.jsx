@@ -20,7 +20,7 @@ const AddClass = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/addClasses", {
+      const response = await fetch("https://assignment12-server-nu.vercel.app/addClasses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

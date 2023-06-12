@@ -6,7 +6,7 @@ const ManageClasses = () => {
   const [classes, setClasses] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:5000/addClasses')
+    fetch('https://assignment12-server-nu.vercel.app/addClasses')
       .then(response => response.json())
       .then(data => setClasses(data))
       .catch(error => console.error(error));
@@ -16,7 +16,7 @@ const ManageClasses = () => {
     // Retrieve access token from localStorage
     const accessToken = localStorage.getItem('access-token');
 
-    fetch(`http://localhost:5000/addClasses/${classId}`, {
+    fetch(`https://assignment12-server-nu.vercel.app/addClasses/${classId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const ManageClasses = () => {
   const handleDeny = (classId) => {
     const accessToken = localStorage.getItem('access-token');
 
-    fetch(`http://localhost:5000/addClasses/${classId}/deny`, {
+    fetch(`https://assignment12-server-nu.vercel.app/addClasses/${classId}/deny`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

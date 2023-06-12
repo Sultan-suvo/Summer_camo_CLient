@@ -45,7 +45,7 @@ const Login = () => {
         console.log(loggedUser);
         const savedUser = { name: loggedUser.displayName, email: loggedUser.email , image:loggedUser.photoURL}
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://assignment12-server-nu.vercel.app/users', {
           method: "POSt",
           headers: {
             'content-type': 'application/json'

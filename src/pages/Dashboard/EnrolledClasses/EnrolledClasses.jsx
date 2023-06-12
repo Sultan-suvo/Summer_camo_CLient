@@ -11,7 +11,7 @@ const EnrolledClasses = () => {
       const email = user.email; // Access the email from the user object
       const accessToken = localStorage.getItem("access-token"); // Retrieve the access token from local storage
 
-      axios.get(`http://localhost:5000/paymenthistory/${email}`, {
+      axios.get(`https://assignment12-server-nu.vercel.app/paymenthistory/${email}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`, // Include the bearer token in the request headers
         },

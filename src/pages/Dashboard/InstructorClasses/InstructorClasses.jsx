@@ -15,7 +15,7 @@ const InstructorClasses = () => {
                     return;
                 }
 
-                const response = await fetch('http://localhost:5000/instructor/classes', {
+                const response = await fetch('https://assignment12-server-nu.vercel.app/instructor/classes', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

@@ -49,7 +49,7 @@ const Register = () => {
 
                 const savedUser = { name: data.displayName, email: data.email,image:data.photoURL }
 
-                fetch('http://localhost:5000/users', {
+                fetch('https://assignment12-server-nu.vercel.app/users', {
                     method: "POSt",
                     headers: {
                         'content-type': 'application/json'
@@ -86,7 +86,7 @@ const Register = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 const savedUser = { name: loggedUser.displayName, email: loggedUser.email ,image:loggedUser.photoURL}
-                fetch('http://localhost:5000/users', {
+                fetch('https://assignment12-server-nu.vercel.app/users', {
                     method: "POSt",
                     headers: {
                         'content-type': 'application/json'
