@@ -80,7 +80,7 @@ const SelectedClass = () => {
                     <button
                       onClick={() => handleDelete(user)}
                       className="btn btn-
-                                    bg-red-600 text-white border-0 btn-sm hover:bg-black"
+                                    bg-red-600 text-white border-1 btn-sm hover:bg-black"
                     >
                       <FaTrash></FaTrash>
                     </button>
